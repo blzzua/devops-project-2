@@ -1,0 +1,13 @@
+#/etc/systemd/system/app.service
+[Unit]
+Description=Microblog web application
+After=network.target
+
+[Service]
+User=ubuntu
+WorkingDirectory=/app
+ExecStart=/usr/local/bin/gunicorn -b 0.0.0.0:8080 -w 4 main:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
